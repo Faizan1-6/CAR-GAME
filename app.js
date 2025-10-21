@@ -3,10 +3,14 @@ var yellow = document.getElementById("yellow");
 var green = document.getElementById("green");
 var car = document.getElementById("car");
 
+var startBtn = document.getElementById("startBtn");
+var stopBtn = document.getElementById("stopBtn");
+
 var current = "red";
 var carPosition = 0;
 var challanShown = false;
 var stopLine = 550;
+var moving = false; 
 
 function setLight(r, y, g) {
   red.style.opacity = r;
@@ -27,39 +31,42 @@ function signalChange() {
       current = "green";
 
       setTimeout(signalChange, 10000);
+    }, 3000);
 
-    }, 3000); 
-
-  }, 7000); 
+  }, 7000);
 }
 
 function moveCar() {
-  if (current === "green") {
-    carPosition = carPosition + 3;
-  }
+  if (moving) {
+    if (current === "green") {
+      carPosition += 3;
+    }
 
-  if (current === "red" || current === "yellow") {
-    carPosition = carPosition + 0;
-  }
+    if (current === "red" || current === "yellow") {
+      carPosition += 0;
+    }
 
-  if (current === "red" && carPosition > 550 && challanShown === false) {
-    challanShown = true;
-    alert("Traffic Violation! You crossed the red light. Challan issued!");
-  }
+    if (current === "red" && carPosition > 550 && !challanShown) {
+      challanShown = true;
+      alert("Traffic Violation! You crossed the red light. Challan issued!");
+    }
 
-  if (carPosition >= 1200) {  
-    carPosition = -200;
-    challanShown = false;
-  }
+    if (carPosition >= 1200) {
+      carPosition = -200;
+      challanShown = false;
+    }
 
-  car.style.left = carPosition + "px";
+    car.style.left = carPosition + "px";
+  }
 }
 
-
-  if (current === "green") {
-    challanShown = false;
-  }
-
 setInterval(moveCar, 30);
-
 signalChange();
+
+startBtn.addEventListener("click", function() {
+  moving = true;
+});
+
+stopBtn.addEventListener("click", function() {
+  moving = false;
+});

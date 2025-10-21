@@ -34,27 +34,9 @@
   transition: opacity 0.4s ease;
 }
 
-#red {
-  background-color: red;
-}
-
-#yellow {
-  background-color: yellow;
-}
-
-#green {
-  background-color: green;
-}
-
-#stop-line {
-  position: absolute;
-  left: 550px;
-  top: 80%;
-  width: 6px;
-  height: 80px;
-  background: red;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-}
+#red { background-color: red; }
+#yellow { background-color: yellow; }
+#green { background-color: green; }
 
 #car {
   position: absolute;
@@ -64,4 +46,40 @@
   width: 200px;
   height: auto;
   transition: left 0.05s linear;
+}
+
+#controls {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+
+#controls button {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+#startBtn {
+  background: linear-gradient(45deg, #00c853, #64dd17);
+  color: white;
+}
+
+#stopBtn {
+  background: linear-gradient(45deg, #d50000, #ff1744);
+  color: white;
+}
+
+#controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
